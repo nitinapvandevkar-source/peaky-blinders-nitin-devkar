@@ -924,7 +924,7 @@ function ItemBrowser({ items, sectionLabel = "Select an entry" }) {
   );
 }
 
-function DossierPage({ kicker, title, items }) {
+function DossierPage({ kicker, title, items, home = false }) {
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -937,6 +937,33 @@ function DossierPage({ kicker, title, items }) {
         <span className="pb-kicker">{kicker}</span>
         <h1 className="pb-title">{title}</h1>
       </header>
+
+      {home && (
+        <section
+          className="pb-home-story"
+          style={{
+            backgroundImage: `linear-gradient(90deg, rgba(8, 9, 8, 0.96) 0%, rgba(8, 9, 8, 0.78) 48%, rgba(8, 9, 8, 0.18) 100%), url(${introBg})`,
+          }}
+          aria-label="The story of Birmingham and the Shelby family"
+        >
+          <div className="pb-home-story-copy">
+            <span className="pb-home-story-kicker">Birmingham · 1919</span>
+            <h2>Where the city learned their name.</h2>
+            <p>
+              In the smoke of post-war Small Heath, a family built its name
+              street by street. Follow the bloodline, the rivalries, and the
+              empire that carried the Peaky Blinders beyond Birmingham.
+            </p>
+            <NavLink to="/shelby-family" className="pb-story-link">
+              Discover the Shelby bloodline <span aria-hidden="true">↗</span>
+            </NavLink>
+          </div>
+          <span className="pb-home-story-index" aria-hidden="true">
+            I — THE RISE
+          </span>
+        </section>
+      )}
+
       <ItemBrowser key={pathname} items={items} sectionLabel={title} />
     </main>
   );
@@ -1044,6 +1071,7 @@ export default function App() {
               kicker="Small Heath Decree"
               title="Home"
               items={HOME_ITEMS}
+              home
             />
           }
         />

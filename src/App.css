@@ -72,7 +72,7 @@ body {
 
   opacity: 0.045;
 
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http\\://www\\.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http\\\\://www\.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 /* ================= OPENING GATE ================= */
@@ -402,6 +402,7 @@ body {
 
   gap: 0.9rem;
 }
+
 /* ================= INFO LEFT / IMAGE RIGHT ROWS ================= */
 
 .pb-stack {
@@ -472,6 +473,7 @@ body {
 
   position: relative;
 }
+
 .pb-badge {
   align-self: flex-start;
 
@@ -944,6 +946,7 @@ body {
 .pb-gallery-group .pb-detail-panel {
   margin-top: 3rem;
 }
+
 .pb-nav {
   background: rgba(13, 14, 13, 0.96);
 
@@ -1112,5 +1115,353 @@ body {
 
   .pb-item-grid--cinematic .pb-item-image-wrap {
     aspect-ratio: 16 / 9;
+  }
+}
+
+/* =========================================================
+   PEAKY BLINDERS — CINEMATIC REFINEMENT
+   Navigation · Rhythm · Storytelling · Atmosphere
+   ========================================================= */
+
+html {
+  scroll-padding-top: 105px;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at 50% 8%, rgba(91, 53, 64, 0.13), transparent 42%),
+    radial-gradient(
+      ellipse at 8% 55%,
+      rgba(181, 154, 104, 0.035),
+      transparent 35%
+    ),
+    linear-gradient(180deg, #111210 0%, #0d0e0d 52%, #10110f 100%);
+  background-attachment: fixed;
+}
+
+/* 1. A deliberate, compact navigation bar */
+.pb-nav {
+  width: 100%;
+  min-height: 78px;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: clamp(1rem, 2vw, 2rem);
+  padding: 0.85rem clamp(1.25rem, 3.2vw, 3.25rem);
+  background: rgba(12, 13, 12, 0.94);
+  border-bottom: 1px solid rgba(181, 154, 104, 0.32);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.42);
+}
+
+.pb-brand {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-size: clamp(1rem, 1.35vw, 1.28rem);
+  letter-spacing: 0.12em;
+}
+
+.pb-nav-links {
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(0.35rem, 0.85vw, 1rem);
+}
+
+.pb-nav-link {
+  white-space: nowrap;
+  padding: 0.55rem 0.28rem;
+  font-size: clamp(0.72rem, 0.88vw, 0.94rem);
+  letter-spacing: clamp(0.045em, 0.09vw, 0.1em);
+  border-bottom-width: 1px;
+}
+
+.pb-nav-link:hover,
+.pb-nav-link.active {
+  color: var(--gold-champagne);
+  border-bottom-color: var(--gold-primary);
+  text-shadow: 0 0 16px rgba(181, 154, 104, 0.16);
+}
+
+/* 2. Tighter page rhythm; retain generous breathing room */
+.pb-main {
+  position: relative;
+  isolation: isolate;
+  max-width: 1420px;
+  padding: clamp(2.5rem, 4vw, 3.6rem) clamp(1.25rem, 2.4vw, 2.5rem) 6rem;
+}
+
+.pb-main::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(181, 154, 104, 0.045),
+      transparent 48%
+    ),
+    linear-gradient(90deg, transparent, rgba(67, 42, 48, 0.055), transparent);
+}
+
+.pb-header {
+  margin-bottom: clamp(1.8rem, 2.8vw, 2.6rem);
+}
+
+.pb-header::after {
+  width: 118px;
+  margin-top: 1rem;
+  opacity: 0.82;
+}
+
+.pb-title {
+  letter-spacing: 0.1em;
+}
+
+.pb-item-grid {
+  gap: clamp(1rem, 1.5vw, 1.45rem);
+}
+
+.pb-item-grid--cinematic {
+  gap: clamp(1.1rem, 1.8vw, 1.7rem);
+}
+
+.pb-gallery-group {
+  margin-bottom: 4.2rem;
+}
+
+/* 3. Homepage becomes an opening chapter, not only a card directory */
+.pb-home-story {
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: clamp(300px, 34vw, 430px);
+  margin: 0 0 clamp(2.2rem, 3.5vw, 3.4rem);
+  padding: clamp(2rem, 5vw, 4.5rem);
+  overflow: hidden;
+  isolation: isolate;
+  background-color: #171715;
+  background-size: cover;
+  background-position: center 42%;
+  border: 1px solid rgba(181, 154, 104, 0.38);
+  box-shadow:
+    0 24px 58px rgba(0, 0, 0, 0.48),
+    inset 0 0 90px rgba(0, 0, 0, 0.34);
+}
+
+.pb-home-story::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(0deg, rgba(8, 9, 8, 0.5), transparent 42%),
+    radial-gradient(
+      ellipse at 82% 48%,
+      transparent 0%,
+      rgba(8, 9, 8, 0.12) 58%,
+      rgba(8, 9, 8, 0.45) 100%
+    );
+  pointer-events: none;
+}
+
+.pb-home-story::after {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid rgba(215, 196, 157, 0.16);
+  pointer-events: none;
+}
+
+.pb-home-story-copy {
+  position: relative;
+  z-index: 1;
+  width: min(650px, 76%);
+}
+
+.pb-home-story-kicker {
+  display: inline-block;
+  margin-bottom: 1rem;
+  color: var(--gold-champagne);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.pb-home-story-copy h2 {
+  max-width: 620px;
+  margin: 0 0 1rem;
+  color: #e0cfaa;
+  font-family: "Cinzel Decorative", Georgia, serif;
+  font-size: clamp(1.65rem, 3.6vw, 3.15rem);
+  font-weight: 700;
+  line-height: 1.16;
+  letter-spacing: 0.035em;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7);
+}
+
+.pb-home-story-copy p {
+  max-width: 570px;
+  margin: 0 0 1.55rem;
+  color: rgba(226, 221, 213, 0.9);
+  font-size: clamp(1rem, 1.25vw, 1.13rem);
+  line-height: 1.8;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.pb-story-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.72rem 0;
+  color: var(--gold-champagne);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-decoration: none;
+  text-transform: uppercase;
+  border-bottom: 1px solid rgba(215, 196, 157, 0.65);
+  transition:
+    color 250ms ease,
+    gap 250ms ease,
+    border-color 250ms ease;
+}
+
+.pb-story-link:hover {
+  gap: 1.05rem;
+  color: #fff0cf;
+  border-color: #fff0cf;
+}
+
+.pb-home-story-index {
+  position: absolute;
+  right: clamp(1.8rem, 4vw, 3.5rem);
+  bottom: clamp(1.8rem, 4vw, 3rem);
+  color: rgba(226, 221, 213, 0.7);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  writing-mode: vertical-rl;
+}
+
+/* 4. Subtle period-film atmosphere across cards and detail panels */
+.pb-item-tile {
+  background: linear-gradient(
+    145deg,
+    rgba(38, 37, 33, 0.96),
+    rgba(15, 16, 15, 0.98)
+  );
+  box-shadow:
+    0 14px 34px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(215, 196, 157, 0.045);
+}
+
+.pb-item-tile:hover,
+.pb-item-tile:focus-visible,
+.pb-item-tile.is-selected {
+  box-shadow:
+    0 20px 42px rgba(0, 0, 0, 0.48),
+    0 0 24px rgba(181, 154, 104, 0.1);
+}
+
+.pb-item-image-wrap img {
+  filter: saturate(0.68) contrast(1.1) brightness(0.82);
+}
+
+.pb-item-tile:hover .pb-item-image-wrap img,
+.pb-item-tile:focus-visible .pb-item-image-wrap img,
+.pb-item-tile.is-selected .pb-item-image-wrap img {
+  filter: saturate(0.82) contrast(1.1) brightness(0.96);
+}
+
+.pb-detail-panel {
+  border-color: rgba(181, 154, 104, 0.38);
+  background:
+    radial-gradient(ellipse at 85% 15%, rgba(91, 53, 64, 0.2), transparent 48%),
+    linear-gradient(130deg, #22221f 0%, #151614 58%, #211a1d 100%);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.56),
+    inset 0 1px 0 rgba(215, 196, 157, 0.05);
+}
+
+.pb-detail-media {
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(181, 154, 104, 0.08),
+      transparent 68%
+    ),
+    #0b0c0b;
+}
+
+.pb-footer {
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(67, 42, 48, 0.2), transparent 58%),
+    linear-gradient(to top, #070807, var(--bg-coal));
+}
+
+@media (max-width: 1180px) {
+  .pb-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.55rem 1.25rem;
+    padding-top: 0.8rem;
+    padding-bottom: 0.8rem;
+  }
+
+  .pb-brand {
+    width: 100%;
+    text-align: center;
+  }
+
+  .pb-nav-links {
+    flex: 0 1 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    row-gap: 0.35rem;
+  }
+
+  .pb-nav-link {
+    font-size: 0.86rem;
+  }
+}
+
+@media (max-width: 720px) {
+  .pb-home-story {
+    min-height: 350px;
+    padding: 2rem 1.5rem;
+    background-position: 58% center;
+  }
+
+  .pb-home-story-copy {
+    width: 100%;
+  }
+
+  .pb-home-story-copy h2 {
+    max-width: 460px;
+    font-size: clamp(1.55rem, 7vw, 2.3rem);
+  }
+
+  .pb-home-story-copy p {
+    max-width: 440px;
+    font-size: 0.98rem;
+  }
+
+  .pb-home-story-index {
+    display: none;
+  }
+
+  .pb-nav-links {
+    gap: 0.35rem 0.8rem;
+  }
+
+  .pb-nav-link {
+    font-size: 0.78rem;
+    letter-spacing: 0.07em;
   }
 }
