@@ -10,6 +10,7 @@ import "./App.css";
 
 // Intro and additional home archive assets
 import introBg from "./assets/home/intro-bg.jpg";
+import storyBg from "./assets/home/story-bg.jpg";
 
 // Home assets
 import birmingham from "./assets/home/birmingham.jpg";
@@ -942,7 +943,7 @@ function DossierPage({ kicker, title, items, home = false }) {
         <section
           className="pb-home-story"
           style={{
-            backgroundImage: `linear-gradient(90deg, rgba(8, 9, 8, 0.96) 0%, rgba(8, 9, 8, 0.78) 48%, rgba(8, 9, 8, 0.18) 100%), url(${introBg})`,
+            backgroundImage: `linear-gradient(90deg, rgba(8, 9, 8, 0.88) 0%, rgba(8, 9, 8, 0.55) 48%, rgba(8, 9, 8, 0.12) 100%), url(${storyBg})`,
           }}
           aria-label="The story of Birmingham and the Shelby family"
         >
@@ -999,22 +1000,41 @@ function GalleryPage() {
 
 export default function App() {
   const [entered, setEntered] = useState(false);
+  const [isEntering, setIsEntering] = useState(false);
+  const [showRevealTitle, setShowRevealTitle] = useState(false);
   const themeAudioRef = useRef(null);
 
   const enterKhansaar = () => {
-    setEntered(true);
+    if (isEntering || entered) return;
 
-    const audio = themeAudioRef.current;
-    if (audio) {
-      // Begin the looping theme 0.3 seconds into the audio file.
-      audio.currentTime = 3;
-      const playback = audio.play();
-      if (playback && typeof playback.catch === "function") {
-        playback.catch(() => {
-          // Playback can be blocked by browser settings; the user can still enter the site.
-        });
+    setIsEntering(true);
+
+    // First enter the website.
+    window.setTimeout(() => {
+      setEntered(true);
+
+      // Start the existing background music.
+      const audio = themeAudioRef.current;
+
+      if (audio) {
+        audio.currentTime = 3;
+        const playback = audio.play();
+
+        if (playback && typeof playback.catch === "function") {
+          playback.catch(() => {});
+        }
       }
-    }
+
+      // Reveal the title after entering.
+      window.setTimeout(() => {
+        setShowRevealTitle(true);
+
+        // Fade the title away after 3.2 seconds.
+        window.setTimeout(() => {
+          setShowRevealTitle(false);
+        }, 4500);
+      }, 400);
+    }, 800);
   };
 
   const navItems = [
@@ -1034,19 +1054,40 @@ export default function App() {
       <audio ref={themeAudioRef} src="/audio/theme.mp3" loop preload="auto" />
       <div className="pb-grain" aria-hidden="true" />
 
-      <div className={`pb-intro ${entered ? "pb-intro-exit" : ""}`}>
+      <div
+        className={`pb-intro ${entered ? "pb-intro-exit" : ""} ${isEntering ? "pb-intro-entering" : ""}`}
+      >
         <img src={introBg} alt="Peaky Blinders Intro" className="pb-intro-bg" />
         <div className="pb-intro-vignette" />
+
         <span className="pb-intro-kicker">Small Heath • Birmingham</span>
-        <button type="button" className="pb-order-btn" onClick={enterKhansaar}>
+
+        <button
+          type="button"
+          className="pb-order-btn"
+          onClick={enterKhansaar}
+          disabled={isEntering}
+        >
           By the Order of Peaky Blinders
         </button>
       </div>
 
+      {/* TITLE REVEAL */}
+      {entered && showRevealTitle && (
+        <div className="pb-title-reveal" aria-live="polite">
+          <h1>
+            PEAKY
+            <span>BLINDERS</span>
+          </h1>
+        </div>
+      )}
+
+      {/* NAVIGATION */}
       <nav className="pb-nav">
         <NavLink to="/" end className="pb-brand">
           PEAKY BLINDERS
         </NavLink>
+
         <div className="pb-nav-links">
           {navItems.map((item) => (
             <NavLink
@@ -1075,6 +1116,7 @@ export default function App() {
             />
           }
         />
+
         <Route
           path="/shelby-family"
           element={
@@ -1085,6 +1127,7 @@ export default function App() {
             />
           }
         />
+
         <Route
           path="/characters"
           element={
@@ -1095,6 +1138,7 @@ export default function App() {
             />
           }
         />
+
         <Route
           path="/gangs"
           element={
@@ -1105,6 +1149,7 @@ export default function App() {
             />
           }
         />
+
         <Route
           path="/empire"
           element={
@@ -1115,6 +1160,7 @@ export default function App() {
             />
           }
         />
+
         <Route
           path="/locations"
           element={
@@ -1125,6 +1171,7 @@ export default function App() {
             />
           }
         />
+
         <Route
           path="/seasons"
           element={
@@ -1135,6 +1182,7 @@ export default function App() {
             />
           }
         />
+
         <Route
           path="/timeline"
           element={
@@ -1145,6 +1193,7 @@ export default function App() {
             />
           }
         />
+
         <Route path="/gallery" element={<GalleryPage />} />
       </Routes>
 
